@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="main-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>مغامرة الأرقام للأطفال</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body class="light-mode">
+
+    <div class="settings-bar">
+        <button onclick="toggleDarkMode()" id="theme-btn" title="الوضع الليلي">🌙</button>
+        <button onclick="toggleLanguage()" id="lang-btn">English</button>
+    </div>
+
+    <div id="app-container">
+        <div class="info-panel">
+            <div class="score-box"><span id="score-text">النقاط</span>: <span id="score">0</span> ⭐</div>
+            <div class="level-box"><span id="level-text">المستوى</span>: <span id="current-level">1</span> 🏆</div>
+        </div>
+
+        <div class="operator-selector">
+            <button class="op-btn active" onclick="setOp('+', this)">+</button>
+            <button class="op-btn" onclick="setOp('-', this)">-</button>
+            <button class="op-btn" onclick="setOp('*', this)">×</button>
+            <button class="op-btn" onclick="setOp('/', this)">÷</button>
+        </div>
+
+        <div id="question-display">
+            <span id="n1">0</span> <span id="op-label">+</span> <span id="n2">0</span> <span>=</span> <span class="answer-preview" id="user-input"></span>
+        </div>
+
+        <div id="feedback"></div>
+
+        <table class="numpad-table">
+            <tr>
+                <td><button class="num-btn" onclick="appendNum(1)">1</button></td>
+                <td><button class="num-btn" onclick="appendNum(2)">2</button></td>
+                <td><button class="num-btn" onclick="appendNum(3)">3</button></td>
+            </tr>
+            <tr>
+                <td><button class="num-btn" onclick="appendNum(4)">4</button></td>
+                <td><button class="num-btn" onclick="appendNum(5)">5</button></td>
+                <td><button class="num-btn" onclick="appendNum(6)">6</button></td>
+            </tr>
+            <tr>
+                <td><button class="num-btn" onclick="appendNum(7)">7</button></td>
+                <td><button class="num-btn" onclick="appendNum(8)">8</button></td>
+                <td><button class="num-btn" onclick="appendNum(9)">9</button></td>
+            </tr>
+            <tr>
+                <td><button class="num-btn clear-btn" onclick="clearInput()">C</button></td>
+                <td><button class="num-btn" onclick="appendNum(0)">0</button></td>
+                <td><button class="num-btn back-btn" onclick="deleteLast()">←</button></td>
+            </tr>
+            <tr>
+                <td colspan="3"><button class="num-btn action-btn" id="check-btn" onclick="checkAnswer()">تحقق من الإجابة</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // تسجيل ملف الخدمة PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>
